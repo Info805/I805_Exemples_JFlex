@@ -1,0 +1,69 @@
+plugins {
+    id 'java'
+}
+
+repositories {
+    // You can declare any Maven/Ivy/file repository here.
+    mavenCentral()
+}
+
+configurations {
+    jflexGeneration
+}
+
+dependencies {
+    // jflex : generation de l'analyseur lexical
+    jflexGeneration 'de.jflex:jflex:1.8.2'
+}
+
+// on réutilise la tache ant pour jflex
+task jflex (group: 'build') {
+    ext.source = fileTree ( 'src/main/jflex'){
+        include "**/*.jflex"
+        include "**/*.flex"
+    }
+    ext.destdir = file("${buildDir}/src/main/generated-jflex")
+    ext.noback = 'true'
+    ext.verbose = 'on'
+    ext.encoding = 'UTF-8'
+
+	inputs.property('noback', jflex.noback)
+	inputs.property('encoding', jflex.encoding)
+	inputs.files(jflex.source)
+	outputs.dir(jflex.destdir)
+        
+    ant.taskdef(name:'jflex', classpath:configurations.jflexGeneration.asPath,  classname:"jflex.anttask.JFlexTask")
+	doLast {
+        sourceSets.main.java.srcDir jflex.destdir
+        source.each { File f -> 
+            println "jflex source --> ${f}"
+            ant.jflex(file:f, destdir:destdir, nobak:noback, verbose:verbose, encoding: encoding)
+        }
+    }
+}
+
+clean.doFirst {
+    delete jflex.destdir
+}
+compileJava.dependsOn jflex
+
+sourceSets {
+	main {
+   		java {
+   			sourceCompatibility = 1.8
+    		targetCompatibility = 1.8
+            srcDir jflex.destdir
+    	}
+   	}
+    test {
+    }
+}
+
+jar {
+    manifest {
+        attributes  'Main-Class': 'testJFlex.MonAnalyseur1'
+    }
+}
+
+task stage(dependsOn: ['build', 'clean'])
+build.mustRunAfter clean
