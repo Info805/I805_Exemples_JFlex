@@ -15,18 +15,18 @@ ils peuvent aussi, comme dans ces exemples, être utilisés seuls.
 ## Exemple 1 : un analyseur qui compte les 'a' et le 'e'
 
 Spécification JFlex : [src/main/jflex/test1.flex](src/main/jflex/test1.flex)
-La classe généree se trouvera dans **src/main/generated-jflex/testJFlex/MonAnalyseur1.java**.
+La classe généree se trouvera dans **build/generated/sources/jflex/main/java/testJFlex/MonAnalyseur1.java**.
 
 ## Exemple 2 : un analyseur qui compte les minuscules, majuscules et les espaces...
 
 Spécification JFlex : [src/main/jflex/test2.flex](src/main/jflex/test2.flex)
-La classe généree se trouvera dans **src/main/generated-jflex/testJFlex/MonAnalyseur3.java**.
+La classe généree se trouvera dans **build/generated/sources/jflex/main/java/testJFlex/MonAnalyseur2.java**.
 
 
 ## Exemple 3 : if/then/else 
 
 Spécification JFlex : [src/main/jflex/test3.flex](src/main/jflex/test3.flex)
-La classe généree se trouvera dans **src/main/generated-jflex/testJFlex/MonAnalyseur3.java**.
+La classe généree se trouvera dans **build/generated/sources/jflex/main/java/testJFlex/MonAnalyseur3.java**.
 
 ## Construction des exemples :
 La commande `./gradlew build` (ou `gradlew.bat build`) permet de générer les analyseurs, de les compiler et de générer une archive java (build/libs/JFlex_Examples.jar).
