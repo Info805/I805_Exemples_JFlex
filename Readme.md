@@ -15,18 +15,22 @@ ils peuvent aussi, comme dans ces exemples, être utilisés seuls.
 ## Exemple 1 : un analyseur qui compte les 'a' et le 'e'
 
 Spécification JFlex : [src/main/jflex/test1.flex](src/main/jflex/test1.flex)
-La classe généree se trouvera dans **build/generated/sources/jflex/main/java/testJFlex/MonAnalyseur1.java**.
+La classe générée se trouvera dans **build/generated/sources/jflex/main/java/testJFlex/MonAnalyseur1.java**.
 
 ## Exemple 2 : un analyseur qui compte les minuscules, majuscules et les espaces...
 
 Spécification JFlex : [src/main/jflex/test2.flex](src/main/jflex/test2.flex)
-La classe généree se trouvera dans **build/generated/sources/jflex/main/java/testJFlex/MonAnalyseur2.java**.
-
+La classe générée se trouvera dans **build/generated/sources/jflex/main/java/testJFlex/MonAnalyseur2.java**.
 
 ## Exemple 3 : if/then/else 
 
 Spécification JFlex : [src/main/jflex/test3.flex](src/main/jflex/test3.flex)
-La classe généree se trouvera dans **build/generated/sources/jflex/main/java/testJFlex/MonAnalyseur3.java**.
+La classe générée se trouvera dans **build/generated/sources/jflex/main/java/testJFlex/MonAnalyseur3.java**.
+
+## Exemple 4 : compter les 'le' et les 'i' et mise en majuscule.
+
+Spécification JFlex : [src/main/jflex/test4.flex](src/main/jflex/test4.flex)
+La classe générée se trouvera dans **build/generated/sources/jflex/main/java/testJFlex/MonAnalyseur4.java**.
 
 ## Construction des exemples :
 La commande `./gradlew build` (ou `gradlew.bat build`) permet de générer les analyseurs, de les compiler et de générer une archive java (build/libs/JFlex_Examples.jar).
@@ -71,6 +75,19 @@ OPREL>
 NBRE65
 MRthen
 ```
+
+Exemple 4 : 
+
+```
+java -Dfile.encoding=UTF-8 -cp build/libs/JFlex_Examples.jar testJFlex.MonAnalyseur4 test4.txt
+```
+Résultat prévu : 
+
+```
+LE1 TEST EST I1MPORTANT. 
+AUSSI2 LA RÉUSSI3TE, LE2 COURAGE, LE3 BON SENS.
+```
+
 
 ## Importation des exemples dans votre IDE favori (Eclipse/IntelliJ Idea/...)
 

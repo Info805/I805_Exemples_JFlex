@@ -1,5 +1,6 @@
 package testJFlex;
 %%
+/* optionsjflex */
 %class MonAnalyseur1
 %standalone
 %{
